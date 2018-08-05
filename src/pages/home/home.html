@@ -1,33 +1,58 @@
 <ion-content padding>
-  <h3>Bem Vindo(a)!</h3>
-  <img src="assets/imgs/logo-market.png" alt="logo" class="logo">
-
-
-  <form action="">
-    <ion-item>
-      <ion-label floating>
-        E-mail
-      </ion-label>
-      <ion-input type="text"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label floating>
-        Senha
-      </ion-label>
-      <ion-input type="password"></ion-input>
-    </ion-item>
-
-    <button ion-button round block icon-end>
-      ENTRAR
-      <ion-icon name="exit"></ion-icon>
-    </button>
-
-  </form>
-
-  <button ion-button round block outline icon-end>
-    CADASTRAR-SE
-    <ion-icon name="add"></ion-icon>
-  </button>
-
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12>
+        <h3>Bem Vindo(a)!</h3>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12>
+        <img src="assets/imgs/logo-market.png" alt="logo" class="logo">
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12>
+        <ion-grid>
+          <form action="">
+            <ion-row>
+              <ion-col col-11>
+                <ion-item>
+                  <ion-label floating>
+                    E-mail
+                  </ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-11>
+                <ion-item>
+                  <ion-label floating>
+                    Senha
+                  </ion-label>
+                  <ion-input type="password"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-12>
+                <button ion-button round block icon-end>
+                  ENTRAR
+                  <ion-icon name="exit"></ion-icon>
+                </button>
+              </ion-col>
+            </ion-row>
+          </form>
+          <ion-row>
+            <ion-col col-12>
+              <button ion-button round block outline icon-end>
+                CADASTRAR-SE
+                <ion-icon name="add"></ion-icon>
+              </button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
