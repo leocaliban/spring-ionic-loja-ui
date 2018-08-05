@@ -1,18 +1,33 @@
-<ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Home</ion-title>
-  </ion-navbar>
-</ion-header>
-
 <ion-content padding>
-  <h3>IONIC Starter</h3>
+  <h3>Bem Vindo(a)!</h3>
+  <img src="assets/imgs/logo-market.png" alt="logo" class="logo">
 
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
 
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+  <form action="">
+    <ion-item>
+      <ion-label floating>
+        E-mail
+      </ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>
+        Senha
+      </ion-label>
+      <ion-input type="password"></ion-input>
+    </ion-item>
+
+    <button ion-button round block icon-end>
+      ENTRAR
+      <ion-icon name="exit"></ion-icon>
+    </button>
+
+  </form>
+
+  <button ion-button round block outline icon-end>
+    CADASTRAR-SE
+    <ion-icon name="add"></ion-icon>
+  </button>
+
 </ion-content>
