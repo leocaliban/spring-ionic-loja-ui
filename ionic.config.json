@@ -1,0 +1,7 @@
+{
+  "name": "appLojaSpringIonic",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
