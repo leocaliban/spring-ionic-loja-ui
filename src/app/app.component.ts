@@ -3,15 +3,14 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { HomePage } from '../pages/home/home';
-
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  //substituído o tipo por string(com a criação do home.module a classe pode ser referenciada como uma string)
+  rootPage: string = 'HomePage';
 
   pages: Array<{title: string, component: any}>;
 
@@ -20,7 +19,7 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: HomePage }
+      { title: 'Home', component: 'HomePage' }
     ];
 
   }
