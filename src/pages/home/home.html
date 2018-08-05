@@ -22,21 +22,17 @@
                   </ion-label>
                   <ion-input type="text"></ion-input>
                 </ion-item>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col col-11>
                 <ion-item>
-                  <ion-label floating>
-                    Senha
-                  </ion-label>
-                  <ion-input type="password"></ion-input>
-                </ion-item>
+                    <ion-label floating>
+                      Senha
+                    </ion-label>
+                    <ion-input type="password"></ion-input>
+                  </ion-item>
               </ion-col>
             </ion-row>
             <ion-row>
               <ion-col col-12>
-                <button ion-button round block icon-end>
+                <button ion-button round block icon-end (click)="login()"><!--() = binding de eventos-->
                   ENTRAR
                   <ion-icon name="exit"></ion-icon>
                 </button>

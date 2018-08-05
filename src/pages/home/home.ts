@@ -13,4 +13,10 @@ export class HomePage {
 
   }
 
+  login(){
+
+    //Push faz o empilhamento das páginas
+    this.navCtrl.setRoot('CategoriasPage');
+  }
+
 }
