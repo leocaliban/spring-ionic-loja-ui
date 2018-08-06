@@ -39,7 +39,7 @@ export class HomePage {
       //fazer a inscrição para obter a resposta
       .subscribe(response => {//- se a resposta vier com sucesso
         //imprime no console o cabeçalho de Authorization (contém o token)
-        console.log(response.headers.get('Authorization'));
+        this.auth.successfulLogin(response.headers.get('Authorization'));
 
       //Root não faz o empilhamento das páginas (Push)
       this.navCtrl.setRoot('CategoriasPage');
