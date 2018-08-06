@@ -32,9 +32,7 @@ export class CategoriasPage {
     this.categoriaService.buscarTodos().subscribe(response =>{
       this.categorias = response;
     },
-    error => {
-      console.log(error);
-    });
+    error => {});
 
   }
 
