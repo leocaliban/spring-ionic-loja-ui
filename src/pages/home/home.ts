@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, IonicPage } from 'ionic-angular';
 import { MenuController } from '../../../node_modules/ionic-angular/components/app/menu-controller';
 import { CredenciaisDTO } from '../../models/credenciais.dto';
+import { AuthService } from '../../services/auth.service';
 
 
 @IonicPage()
@@ -16,7 +17,10 @@ export class HomePage {
     senha : ''
   }
 
-  constructor(public navCtrl: NavController, public menu: MenuController) {
+  constructor(
+    public navCtrl: NavController,
+    public menu: MenuController,
+    public auth: AuthService) {
 
   }
 
@@ -31,9 +35,15 @@ export class HomePage {
 
   login() {
     console.log(this.credenciais);
+    this.auth.authenticate(this.credenciais)
+      //fazer a inscrição para obter a resposta
+      .subscribe(response => {//- se a resposta vier com sucesso
+        //imprime no console o cabeçalho de Authorization (contém o token)
+        console.log(response.headers.get('Authorization'));
 
-    //Root não faz o empilhamento das páginas (Push)
-    this.navCtrl.setRoot('CategoriasPage');
+      //Root não faz o empilhamento das páginas (Push)
+      this.navCtrl.setRoot('CategoriasPage');
+    },
+    error =>{});
   }
-
 }
