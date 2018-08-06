@@ -20,13 +20,13 @@
                   <ion-label floating>
                     E-mail
                   </ion-label>
-                  <ion-input type="text"></ion-input>
+                  <ion-input [(ngModel)]='credenciais.email' name='email' type="text"></ion-input>
                 </ion-item>
                 <ion-item>
                     <ion-label floating>
                       Senha
                     </ion-label>
-                    <ion-input type="password"></ion-input>
+                    <ion-input [(ngModel)]='credenciais.senha' name='senha' type="password"></ion-input>
                   </ion-item>
               </ion-col>
             </ion-row>

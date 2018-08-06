@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, IonicPage } from 'ionic-angular';
 import { MenuController } from '../../../node_modules/ionic-angular/components/app/menu-controller';
+import { CredenciaisDTO } from '../../models/credenciais.dto';
 
 
 @IonicPage()
@@ -9,6 +10,11 @@ import { MenuController } from '../../../node_modules/ionic-angular/components/a
   templateUrl: 'home.html'
 })
 export class HomePage {
+
+  credenciais : CredenciaisDTO = {
+    email : '',
+    senha : ''
+  }
 
   constructor(public navCtrl: NavController, public menu: MenuController) {
 
@@ -24,6 +30,7 @@ export class HomePage {
   }
 
   login() {
+    console.log(this.credenciais);
 
     //Root não faz o empilhamento das páginas (Push)
     this.navCtrl.setRoot('CategoriasPage');
