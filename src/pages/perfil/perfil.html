@@ -11,5 +11,14 @@
 
 
 <ion-content padding>
-  {{ email }}
+  <ion-avatar>
+    <!--
+      A '?' é um operador de navegação segura do angular
+      (se a variável ainda não tiver valor, não vai dar erro na página)
+      quando o controlador definir um valor para ela, o angular irá fazer a renderização dela.
+    -->
+    <img class='circle' [src]="cliente?.imageUrl ||'assets/imgs/avatar-blank.png'">
+  </ion-avatar>
+  <h2 text-center>{{cliente?.nome}}</h2>
+  <p text-center>{{cliente?.email}}</p>
 </ion-content>
