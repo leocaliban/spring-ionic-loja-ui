@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from "../../../node_modules/@angular/core";
 import { Observable } from '../../../node_modules/rxjs/Rx';
 import { ClienteDTO } from '../../models/cliente.dto';
@@ -16,12 +16,9 @@ export class ClienteService {
 
   buscarPorEmail(email: string): Observable<ClienteDTO> {
 
-    let token = this.storage.getLocalUser().token;//obtendo o token
-    let authHeader = new HttpHeaders({ 'Authorization': 'Bearer ' + token });//criando o header com a autorização
 
     return this.http.get<ClienteDTO>(
-      `${API_CONFIG.baseURL}/clientes/email?value=${email}`,//endpoint definido no backend
-      { 'headers': authHeader });//informando o header da requisição
+      `${API_CONFIG.baseURL}/clientes/email?value=${email}`);//endpoint definido no backend
 
   }
 
