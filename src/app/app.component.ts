@@ -1,3 +1,4 @@
+import { AuthService } from './../services/auth.service';
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -12,15 +13,20 @@ export class MyApp {
   //substituído o tipo por string(com a criação do home.module a classe pode ser referenciada como uma string)
   rootPage: string = 'HomePage';
 
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{ title: string, component: any }>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(
+    public platform: Platform,
+    public statusBar: StatusBar,
+    public splashScreen: SplashScreen,
+    public auth: AuthService) {
     this.initializeApp();
 
     //Opções do menu de navegação
     this.pages = [
       { title: 'Perfil', component: 'PerfilPage' },
-      { title: 'Categorias', component: 'CategoriasPage' }
+      { title: 'Categorias', component: 'CategoriasPage' },
+      { title: 'Sair', component: '' }
     ];
 
   }
@@ -34,9 +40,15 @@ export class MyApp {
     });
   }
 
-  openPage(page) {
-    // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
+  openPage(page: { title: string, component: string }) {
+    switch (page.title) {
+      case 'Sair':
+        this.auth.logout();
+        this.nav.setRoot('HomePage');
+        break;
+
+      default:
+        this.nav.setRoot(page.component);
+    }
   }
 }
