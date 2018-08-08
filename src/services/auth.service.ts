@@ -7,32 +7,32 @@ import { StorageService } from './storage.service';
 import { JwtHelper } from 'angular2-jwt';
 
 @Injectable()
-export class AuthService{
+export class AuthService {
 
   //npm install --save angular2-jwt
   jwtHelper: JwtHelper = new JwtHelper();
 
-  constructor(public http: HttpClient, public storageService: StorageService){
+  constructor(public http: HttpClient, public storageService: StorageService) {
 
   }
-  authenticate(credenciais : CredenciaisDTO){
-    return this.http.post(`${API_CONFIG.baseURL}/login`, credenciais, {observe: 'response', responseType: 'text'})
-
+  authenticate(credenciais: CredenciaisDTO) {
+    return this.http.post(`${API_CONFIG.baseURL}/login`, credenciais, { observe: 'response', responseType: 'text' });
   }
 
-  successfulLogin(authorizationValue : string) {
+  refreshToken() {
+    return this.http.post(`${API_CONFIG.baseURL}/auth/refresh_token`, {}, { observe: 'response', responseType: 'text' });
+  }
+
+  successfulLogin(authorizationValue: string) {
     let tokenRecuperado = authorizationValue.substring(7);//Retira o Bearer do token
-    let usuario : LocalUser = {
+    let usuario: LocalUser = {
       token: tokenRecuperado,
       email: this.jwtHelper.decodeToken(tokenRecuperado).sub//extrai o email do token
     };
     this.storageService.setLocalUser(usuario);
   }
 
-  logout(){
+  logout() {
     this.storageService.setLocalUser(null);
   }
-
-
-
 }

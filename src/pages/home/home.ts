@@ -12,9 +12,9 @@ import { AuthService } from '../../services/auth.service';
 })
 export class HomePage {
 
-  credenciais : CredenciaisDTO = {
-    email : '',
-    senha : ''
+  credenciais: CredenciaisDTO = {
+    email: '',
+    senha: ''
   }
 
   constructor(
@@ -33,17 +33,27 @@ export class HomePage {
     this.menu.swipeEnable(true);
   }
 
+  /**
+   * Quando entrar na aplicação, atualizar o token
+   */
+  ionViewDidEnter() {
+    this.auth.refreshToken().subscribe(response => {
+      this.auth.successfulLogin(response.headers.get('Authorization'));
+      this.navCtrl.setRoot('CategoriasPage');
+    },
+      error => { });
+  }
+
   login() {
-    console.log(this.credenciais);
     this.auth.authenticate(this.credenciais)
       //fazer a inscrição para obter a resposta
       .subscribe(response => {//- se a resposta vier com sucesso
         //imprime no console o cabeçalho de Authorization (contém o token)
         this.auth.successfulLogin(response.headers.get('Authorization'));
 
-      //Root não faz o empilhamento das páginas (Push)
-      this.navCtrl.setRoot('CategoriasPage');
-    },
-    error =>{});
+        //Root não faz o empilhamento das páginas (Push)
+        this.navCtrl.setRoot('CategoriasPage');
+      },
+        error => { });
   }
 }
