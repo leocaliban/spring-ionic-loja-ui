@@ -23,11 +23,11 @@
                   <ion-input [(ngModel)]='credenciais.email' name='email' type="text"></ion-input>
                 </ion-item>
                 <ion-item>
-                    <ion-label floating>
-                      Senha
-                    </ion-label>
-                    <ion-input [(ngModel)]='credenciais.senha' name='senha' type="password"></ion-input>
-                  </ion-item>
+                  <ion-label floating>
+                    Senha
+                  </ion-label>
+                  <ion-input [(ngModel)]='credenciais.senha' name='senha' type="password"></ion-input>
+                </ion-item>
               </ion-col>
             </ion-row>
             <ion-row>
@@ -41,7 +41,7 @@
           </form>
           <ion-row>
             <ion-col col-12>
-              <button ion-button round block outline icon-end>
+              <button ion-button round block outline icon-end (click)='signup()'>
                 CADASTRAR-SE
                 <ion-icon name="add"></ion-icon>
               </button>
