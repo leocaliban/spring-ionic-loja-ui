@@ -8,23 +8,23 @@
 
 
 <ion-content padding>
-  <form (ngSubmit)='signupUser(); $event.preventDefault()'>
+  <form [formGroup]='formGroup' (ngSubmit)='signupUser(); $event.preventDefault()'>
     <ion-item>
       <ion-label floating>Nome*</ion-label>
-      <ion-input name='nome' type="text"></ion-input>
+      <ion-input formControlName='nome' type="text"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label floating>E-mail*</ion-label>
-      <ion-input name='email' type="text"></ion-input>
+      <ion-input formControlName='email' type="text"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label floating>Senha*</ion-label>
-      <ion-input name='senha' type="password"></ion-input>
+      <ion-input formControlName='senha' type="password"></ion-input>
     </ion-item>
 
-    <ion-list radio-group name='tipo'>
+    <ion-list radio-group formControlName='tipo'>
       <ion-list-header>Tipo de cliente</ion-list-header>
       <ion-item>
         <ion-label>Pessoa Física</ion-label>
@@ -38,50 +38,50 @@
 
     <ion-item>
       <ion-label floating>CPF/CNPJ</ion-label>
-      <ion-input name='cpf-cnpj' type="text"></ion-input>
+      <ion-input formControlName='cpfOuCnpj' type="text"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label floating>Logradouro*</ion-label>
-      <ion-input name='logradouro' type="text"></ion-input>
+      <ion-input formControlName='logradouro' type="text"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label floating>Número*</ion-label>
-      <ion-input name='numero' type="text"></ion-input>
+      <ion-input formControlName='numero' type="text"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label floating>Complemento</ion-label>
-      <ion-input name='complemento' type="text"></ion-input>
+      <ion-input formControlName='complemento' type="text"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label floating>Bairro</ion-label>
-      <ion-input name='bairro' type="text"></ion-input>
+      <ion-input formControlName='bairro' type="text"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label floating>CEP*</ion-label>
-      <ion-input name='cep' type="text"></ion-input>
+      <ion-input formControlName='cep' type="text"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label floating>Telefone 1*</ion-label>
-      <ion-input name='telefone1' type="text"></ion-input>
+      <ion-input formControlName='telefone1' type="text"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>Telefone 2</ion-label>
-      <ion-input name='telefone2' type="text"></ion-input>
+      <ion-input formControlName='telefone2' type="text"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>Telefone 3</ion-label>
-      <ion-input name='telefone3' type="text"></ion-input>
+      <ion-input formControlName='telefone3' type="text"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label stacked>Estado</ion-label>
-      <ion-select name='estadoId' (ionChange)='updateCidades()'>
+      <ion-select formControlName='estadoId' (ionChange)='updateCidades()'>
         <ion-option value='1'>São Paulo</ion-option>
         <ion-option value='2'>Rio de Janeiro</ion-option>
       </ion-select>
@@ -89,7 +89,7 @@
 
     <ion-item>
       <ion-label stacked>Cidade</ion-label>
-      <ion-select name='cidadeId'>
+      <ion-select formControlName='cidadeId'>
         <ion-option value='1'>Santos</ion-option>
         <ion-option value='2'>Niterói</ion-option>
       </ion-select>
