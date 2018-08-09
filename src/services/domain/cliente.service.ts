@@ -22,8 +22,13 @@ export class ClienteService {
 
   }
 
-  buscarImagemDoBucket(id : string) : Observable<any>{
+  buscarImagemDoBucket(id: string): Observable<any> {
     let url = `${API_CONFIG.bucketBaseURL}/cp${id}.jpg`
-    return this.http.get(url, {responseType : 'blob'});//indica que a resposta http é uma imagem 'blob'
+    return this.http.get(url, { responseType: 'blob' });//indica que a resposta http é uma imagem 'blob'
+  }
+
+  salvar(obj: ClienteDTO) {
+    return this.http.post(
+      `${API_CONFIG.baseURL}/clientes`, obj, { observe: 'response', responseType: 'text' });
   }
 }

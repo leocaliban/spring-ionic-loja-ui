@@ -1,5 +1,6 @@
+import { ClienteService } from './../../services/domain/cliente.service';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '../../../node_modules/@angular/forms';
 import { CidadeService } from '../../services/domain/cidade.service';
 import { EstadoService } from '../../services/domain/estado.service';
@@ -22,12 +23,14 @@ export class SignupPage {
     public navParams: NavParams,
     public formBuilder: FormBuilder,
     public cidadeService: CidadeService,
-    public estadoService: EstadoService) {
+    public estadoService: EstadoService,
+    public clienteService: ClienteService,
+    public alertCtlr: AlertController) {
 
     this.formGroup = this.formBuilder.group({//Definir as validações dos campos do form
       nome: ['Chapelli', [Validators.required, Validators.minLength(5), Validators.maxLength(120)]],
       email: ['cdsdahoraa@gmail.com', [Validators.required, Validators.email]],
-      tipo: ['1', [Validators.required]],
+      tipoCliente: ['1', [Validators.required]],
       cpfOuCnpj: ['18179410030', [Validators.required, Validators.minLength(11), Validators.maxLength(14)]],
       senha: ['123', [Validators.required]],
       logradouro: ['Rua Xangai', [Validators.required]],
@@ -44,7 +47,10 @@ export class SignupPage {
   }
 
   signupUser() {
-    console.log('FORMULÁRIO ENVIADO!');
+    this.clienteService.salvar(this.formGroup.value).subscribe(response => {
+      this.showInsertOk();
+    },
+      error => { })
   }
 
   ionViewDidLoad() {
@@ -54,7 +60,7 @@ export class SignupPage {
       this.formGroup.controls.estadoId.setValue(this.estados[0].id);
       this.updateCidades();
     },
-      error => { })
+      error => { });
 
   }
 
@@ -68,5 +74,23 @@ export class SignupPage {
       this.formGroup.controls.cidadeId.setValue(null);
     },
       error => { })
+  }
+
+  /** Mostra mensagem de sucesso */
+  showInsertOk(){
+    let alert = this.alertCtlr.create({
+      title: 'Sucesso!',
+      message: 'Cadastro efetuado com sucesso',
+      enableBackdropDismiss: false,
+      buttons: [
+        {
+          text: 'Ok',
+          handler: () => {//função anônima
+            this.navCtrl.pop();//desempilhar a página
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 }
