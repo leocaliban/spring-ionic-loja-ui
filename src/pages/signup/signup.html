@@ -6,7 +6,6 @@
 
 </ion-header>
 
-
 <ion-content padding>
   <form [formGroup]='formGroup' (ngSubmit)='signupUser(); $event.preventDefault()'>
     <ion-item>
@@ -16,7 +15,6 @@
     <p class='danger' *ngIf="formGroup.controls['nome'].dirty && formGroup.controls['nome'].errors" margin-left>
       Valor inválido.
     </p>
-
 
     <ion-item>
       <ion-label floating>E-mail*</ion-label>

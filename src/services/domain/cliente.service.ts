@@ -11,7 +11,6 @@ export class ClienteService {
   constructor(
     public http: HttpClient,
     public storage: StorageService) {
-
   }
 
   buscarPorEmail(email: string): Observable<ClienteDTO> {

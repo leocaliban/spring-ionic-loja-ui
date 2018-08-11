@@ -7,7 +7,6 @@ import { Observable } from '../../../node_modules/rxjs/Rx';
 export class ProdutoService{
 
   constructor(public http: HttpClient){
-
   }
 
   buscarPorCategoria(categoria_id : string){
@@ -18,7 +17,5 @@ export class ProdutoService{
     let url = `${API_CONFIG.bucketBaseURL}/prod${id}-small.jpg`;
     return this.http.get(url, {responseType : 'blob'});
   }
-
-
 
 }

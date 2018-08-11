@@ -15,7 +15,7 @@ export class ProdutosPage {
 
   constructor(
     public navCtrl: NavController,
-    public navParams: NavParams,//obtem parâmetros passados na navegação
+    public navParams: NavParams,//obtém parâmetros passados na navegação
     public produtoService: ProdutoService) {
   }
 
