@@ -10,12 +10,19 @@
 </ion-header>
 
 <ion-content padding>
+  <ion-fab top right edge>
+    <button navPush="CartPage" ion-fab mini>
+      <ion-icon name="cart"></ion-icon>
+    </button>
+  </ion-fab>
   <ion-list>
-    <button ion-item *ngFor='let item of categorias' (click)='showProdutos(item.id)'><!--*ngFor diretiva[percorre a lista de categorias]-->
+    <button ion-item *ngFor='let item of categorias' (click)='showProdutos(item.id)'>
+      <!--*ngFor diretiva[percorre a lista de categorias]-->
       <ion-thumbnail item-start>
         <img src='{{bucketURL}}/cat{{item.id}}.jpg'>
       </ion-thumbnail>
-      <h2>{{item.nome}}</h2><!--interpolação html com os dados recebidos do controlador-->
+      <h2>{{item.nome}}</h2>
+      <!--interpolação html com os dados recebidos do controlador-->
     </button>
   </ion-list>
 </ion-content>
