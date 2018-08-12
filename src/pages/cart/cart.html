@@ -40,7 +40,7 @@
     Continuar comprando
     <ion-icon name="clipboard"></ion-icon>
   </button>
-  <button ion-button round block icon-end (click)='finalizarPedido()' color='secondary'>
+  <button ion-button round block icon-end (click)='finalizarPedido()' color='secondary' *ngIf='total() > 0'>
     Finalizar pedido
     <ion-icon name="ios-arrow-dropright"></ion-icon>
   </button>

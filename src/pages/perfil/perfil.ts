@@ -25,7 +25,7 @@ export class PerfilPage {
     let localUser = this.storage.getLocalUser();
     if (localUser && localUser.email) {
       this.clienteService.buscarPorEmail(localUser.email).subscribe(response => {
-        this.cliente = response;
+        this.cliente = response as ClienteDTO; //casting
         this.buscarImagemSeExistir();
 
       },

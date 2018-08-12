@@ -13,10 +13,9 @@ export class ClienteService {
     public storage: StorageService) {
   }
 
-  buscarPorEmail(email: string): Observable<ClienteDTO> {
+  buscarPorEmail(email: string) {
 
-
-    return this.http.get<ClienteDTO>(
+    return this.http.get(
       `${API_CONFIG.baseURL}/clientes/email?value=${email}`);//endpoint definido no backend
 
   }
