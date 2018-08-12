@@ -20,6 +20,13 @@ export class ClienteService {
 
   }
 
+  buscarPorId(id: string) {
+
+    return this.http.get(
+      `${API_CONFIG.baseURL}/clientes/${id}`);
+
+  }
+
   buscarImagemDoBucket(id: string): Observable<any> {
     let url = `${API_CONFIG.bucketBaseURL}/cp${id}.jpg`
     return this.http.get(url, { responseType: 'blob' });//indica que a resposta http é uma imagem 'blob'
