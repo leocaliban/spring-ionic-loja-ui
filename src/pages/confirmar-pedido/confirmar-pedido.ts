@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ClienteDTO } from '../../models/cliente.dto';
 import { ClienteService } from '../../services/domain/cliente.service';
+import { PedidoService } from '../../services/domain/pedido.service';
 
 @IonicPage()
 @Component({
@@ -23,7 +24,8 @@ export class ConfirmarPedidoPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public cartService: CartService,
-    public clienteService: ClienteService) {
+    public clienteService: ClienteService,
+    public pedidoService: PedidoService) {
 
       this.pedido = this.navParams.get('pedido');
   }
@@ -47,6 +49,22 @@ export class ConfirmarPedidoPage {
 
   total(){
     return this.cartService.total();
+  }
+
+  voltar(){
+    this.navCtrl.setRoot('CartPage');
+  }
+
+  checkout(){
+    this.pedidoService.salvar(this.pedido).subscribe(response =>{
+      this.cartService.criarOuLimparCarrinho();
+      console.log(response.headers.get('location'));
+    },
+    error => {
+      if(error.status == 403){
+        this.navCtrl.setRoot('HomePage');
+      }
+    })
   }
 
 }
