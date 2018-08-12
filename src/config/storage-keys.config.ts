@@ -3,5 +3,6 @@
  * para acessar o usuário logado
  */
 export const STORAGE_KEYS = {
-  localUser: 'localUser'
+  localUser: 'localUser',
+  cart: 'lojaCart'
 }
