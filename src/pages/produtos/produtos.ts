@@ -21,6 +21,10 @@ export class ProdutosPage {
   }
 
   ionViewDidLoad() {
+    this.carregarDados();
+  }
+
+  carregarDados() {
     let categoria_id = this.navParams.get('categoria_id');//recebe os parâmetros passados na página de categorias
     let loader = this.presentLoading();//abre o loader enquando a requisição reune os dados
     this.produtoService.buscarPorCategoria(categoria_id).subscribe(response => {
@@ -31,7 +35,7 @@ export class ProdutosPage {
     },
       error => {
         loader.dismiss();
-       });
+      });
   }
 
   carregarImagens() {
@@ -54,5 +58,13 @@ export class ProdutosPage {
     });
     loader.present();
     return loader;
+  }
+
+  doRefresh(refresher) {
+    this.carregarDados();
+    setTimeout(() => {
+      refresher.complete();
+    }, 1000);
+
   }
 }
