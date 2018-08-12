@@ -1,3 +1,4 @@
+import { CartService } from './domain/cart.service';
 import { API_CONFIG } from './../config/api.config';
 import { HttpClient } from '@angular/common/http';
 import { CredenciaisDTO } from './../models/credenciais.dto';
@@ -12,7 +13,10 @@ export class AuthService {
   //npm install --save angular2-jwt
   jwtHelper: JwtHelper = new JwtHelper();
 
-  constructor(public http: HttpClient, public storageService: StorageService) {
+  constructor(
+    public http: HttpClient,
+    public storageService: StorageService,
+    public cartService: CartService) {
 
   }
   authenticate(credenciais: CredenciaisDTO) {
@@ -30,9 +34,14 @@ export class AuthService {
       email: this.jwtHelper.decodeToken(tokenRecuperado).sub//extrai o email do token
     };
     this.storageService.setLocalUser(usuario);
+    this.limparCarrinho();
   }
 
   logout() {
     this.storageService.setLocalUser(null);
+  }
+
+  limparCarrinho(){
+    this.cartService.criarOuLimparCarrinho();
   }
 }
