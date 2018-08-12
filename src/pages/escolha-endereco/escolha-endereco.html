@@ -16,7 +16,7 @@
     <ion-list-header>
       Selecione um endereço
     </ion-list-header>
-    <button ion-item *ngFor='let endereco of enderecos'>
+    <button ion-item *ngFor='let endereco of enderecos' (click)='nextPage(endereco)'>
       <h2>{{endereco.logradouro}}, {{endereco.numero}}</h2>
       <p>{{endereco.complemento}}, {{endereco.bairro}}, CEP {{endereco.cep}}</p>
       <p>{{endereco.cidade.nome}}, {{endereco.cidade.estado.nome}}</p>
