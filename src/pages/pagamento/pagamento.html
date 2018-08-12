@@ -1,0 +1,47 @@
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name='menu'></ion-icon>
+    </button>
+    <ion-title>Forma de pagamento</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <!--$event.preventDefault() não permite enviar a página, será feito o controle manual do envio-->
+  <form [formGroup]='formGroup' (ngSubmit)='nextPage(); $event.preventDefault()'>
+    <ion-list radio-group formControlName='@type'>
+      <ion-list-header>
+        Tipo de pagamento
+      </ion-list-header>
+      <ion-item>
+        <ion-label>Pagamento com cartão</ion-label>
+        <ion-icon name="card" item-end></ion-icon>
+        <ion-radio checked='true' value='pagamentoComCartao'></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>Pagamento com boleto</ion-label>
+        <ion-icon name="cash" item-end></ion-icon>
+        <ion-radio value='pagamentoComBoleto'></ion-radio>
+      </ion-item>
+    </ion-list>
+
+    <ion-item *ngIf="formGroup.value['@type'] == 'pagamentoComCartao'">
+      <ion-label stacked>Parcelas no cartão</ion-label>
+      <ion-select cormControlName='numeroParcelas'>
+        <!-- first as f = define o f como primeiro, nesse caso o primeiro item ficará selecionado-->
+        <ion-option *ngFor='let n of parcelas; first as f' [value]='n' [selected]='f'>
+          {{n}}
+        </ion-option>
+      </ion-select>
+    </ion-item>
+    <button ion-button round block icon-end type='submit' [disabled]='formGroup.invalid'>
+      Próximo
+      <ion-icon name='ios-arrow-dropright'></ion-icon>
+    </button>
+  </form>
+
+</ion-content>
