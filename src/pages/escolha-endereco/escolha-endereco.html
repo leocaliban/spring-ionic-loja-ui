@@ -1,0 +1,26 @@
+<ion-header>
+
+  <ion-navbar>
+      <button ion-button menuToggle>
+          <ion-icon name='menu'></ion-icon>
+        </button>
+    <ion-title>Endereços</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-list>
+    <ion-list-header>
+      Selecione um endereço
+    </ion-list-header>
+    <button ion-item *ngFor='let endereco of enderecos'>
+      <h2>{{endereco.logradouro}}, {{endereco.numero}}</h2>
+      <p>{{endereco.complemento}}, {{endereco.bairro}}, CEP {{endereco.cep}}</p>
+      <p>{{endereco.cidade.nome}}, {{endereco.cidade.estado.nome}}</p>
+    </button>
+  </ion-list>
+
+</ion-content>
