@@ -29,6 +29,16 @@
         Alterar foto de perfil
       <ion-icon name='ios-camera'></ion-icon>
     </button>
+
+    <button ion-button round block outline icon-end (click)='enviarFoto()' *ngIf='foto'>
+        Enviar foto
+      <ion-icon name='ios-send'></ion-icon>
+    </button>
+
+    <button ion-button round block outline icon-end danger (click)='cancelarFoto()' *ngIf='foto'>
+        Descartar foto
+      <ion-icon name='ios-close'></ion-icon>
+    </button>
   </ion-card>
 
 </ion-content>

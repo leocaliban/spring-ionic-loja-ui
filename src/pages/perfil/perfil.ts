@@ -13,9 +13,9 @@ import { CameraOptions, Camera } from '../../../node_modules/@ionic-native/camer
 })
 export class PerfilPage {
 
-  cliente : ClienteDTO;
-  foto : string;
-  cameraOn : boolean = false;
+  cliente: ClienteDTO;
+  foto: string;
+  cameraOn: boolean = false;
 
   constructor(
     public navCtrl: NavController,
@@ -26,6 +26,10 @@ export class PerfilPage {
   }
 
   ionViewDidLoad() {
+    this.carregarDados();
+  }
+
+  private carregarDados() {
     let localUser = this.storage.getLocalUser();
     if (localUser && localUser.email) {
       this.clienteService.buscarPorEmail(localUser.email).subscribe(response => {
@@ -68,7 +72,19 @@ export class PerfilPage {
     }, (err) => {
       // Handle error
     });
+  }
 
+  enviarFoto() {
+    this.clienteService.enviarFoto(this.foto).subscribe(response => {
+      this.foto = null;
+      this.carregarDados();
+
+    },
+      error => { });
+  }
+
+  cancelarFoto(){
+    this.foto = null;
   }
 
 }
