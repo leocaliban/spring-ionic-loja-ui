@@ -11,7 +11,9 @@ import { ProdutoService } from '../../services/domain/produto.service';
 })
 export class ProdutosPage {
 
-  itens: ProdutoDTO[];
+  itens: ProdutoDTO[] = [];
+
+  page : number = 0;
 
   constructor(
     public navCtrl: NavController,
@@ -27,10 +29,14 @@ export class ProdutosPage {
   carregarDados() {
     let categoria_id = this.navParams.get('categoria_id');//recebe os parâmetros passados na página de categorias
     let loader = this.presentLoading();//abre o loader enquando a requisição reune os dados
-    this.produtoService.buscarPorCategoria(categoria_id).subscribe(response => {
-      this.itens = response['content'];//na busca paginada do backend, o que queremos obter é o content.
+    this.produtoService.buscarPorCategoria(categoria_id, this.page, 10).subscribe(response => {
+      let inicio = this.itens.length;
+      //na busca paginada do backend, o que queremos obter é o content.
+      this.itens = this.itens.concat(response['content']);
+      let fim = this.itens.length -1;
+
       loader.dismiss();//fecha o loader após o carregamento dos dados
-      this.carregarImagens();
+      this.carregarImagens(inicio, fim);
 
     },
       error => {
@@ -38,8 +44,8 @@ export class ProdutosPage {
       });
   }
 
-  carregarImagens() {
-    for (var i = 0; i < this.itens.length; i++) {
+  carregarImagens(inicio : number, fim: number) {
+    for (var i = inicio; i < fim +1; i++) {
       let item = this.itens[i];
       this.produtoService.buscarImagemDoBucketSmall(item.id).subscribe(response => {
         item.imageUrl = `${API_CONFIG.bucketBaseURL}/prod${item.id}-small.jpg`;
@@ -61,10 +67,20 @@ export class ProdutosPage {
   }
 
   doRefresh(refresher) {
+    this.page = 0;
+    this.itens = [];
     this.carregarDados();
     setTimeout(() => {
       refresher.complete();
     }, 1000);
 
+  }
+
+  doInfinite(infiniteScroll){
+    this.page++;
+    this.carregarDados();
+    setTimeout(() => {
+      infiniteScroll.complete();
+    }, 1000);
   }
 }
