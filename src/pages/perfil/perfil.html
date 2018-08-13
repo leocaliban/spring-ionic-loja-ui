@@ -20,4 +20,15 @@
   </ion-avatar>
   <h2 text-center>{{cliente?.nome}}</h2>
   <p text-center>{{cliente?.email}}</p>
+
+  <ion-card>
+    <ion-item *ngIf='foto'>
+      <img [src]='foto'>
+    </ion-item>
+    <button ion-button round block icon-end (click)='tirarFoto()' [disabled]='cameraOn'>
+        Alterar foto de perfil
+      <ion-icon name='ios-camera'></ion-icon>
+    </button>
+  </ion-card>
+
 </ion-content>
